@@ -45,3 +45,15 @@ func (w *Worker) WaitForInstructions() {
 		w.conn.Call("Coordinator.AskForInstructions", w.id, map[string]interface{}{})
 	}
 }
+
+func (w *Worker) Loop() {
+	// wait for instruction
+	for {
+		w.WaitForInstructions()
+		w.Execute()
+	}
+}
+
+func (w *Worker) Execute() {
+	w.l.Printf("I, worker with name %s, shall execute some tasks bestowed upon me by my master", w.id)
+}

@@ -30,5 +30,5 @@ func startCoordinator() {
 func startWorker() {
 	w := worker.NewWorker()
 	w.Register()
-	w.WaitForInstructions()
+	w.Loop()
 }
