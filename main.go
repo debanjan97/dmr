@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"time"
 
 	"github.com/debanjan97/distributed_map_reduce/coordinator"
 	"github.com/debanjan97/distributed_map_reduce/worker"
@@ -25,6 +26,10 @@ func main() {
 func startCoordinator() {
 	c := coordinator.NewCoordinator()
 	c.Serve()
+	c.Start()
+	for !c.Done() {
+		time.Sleep(1 * time.Second)
+	}
 }
 
 func startWorker() {
