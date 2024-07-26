@@ -33,7 +33,6 @@ func (w *Worker) Register() {
 			break
 		}
 		w.l.Print("Waiting for controller to come up")
-		time.Sleep(1 * time.Second)
 	}
 
 	var isRegistered bool
